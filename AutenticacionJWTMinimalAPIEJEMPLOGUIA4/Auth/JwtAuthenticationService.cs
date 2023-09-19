@@ -28,10 +28,18 @@ namespace AutenticacionJWTMinimalAPIEJEMPLOGUIA4.Auth
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim )
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name,userName)
+                } ),
+                Expires=DateTime.UtcNow.AddHours(8),
+
+                SigningCredentials=new SigningCredentials(new SymmetricSecurityKey(tokenKey) , SecurityAlgorithms.HmacSha256Signature)
 
             };
-            throw new NotImplementedException();
+
+            var token=tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
    
