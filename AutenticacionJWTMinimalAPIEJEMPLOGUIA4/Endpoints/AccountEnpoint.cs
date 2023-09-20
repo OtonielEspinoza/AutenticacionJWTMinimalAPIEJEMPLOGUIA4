@@ -12,7 +12,7 @@ namespace AutenticacionJWTMinimalAPIEJEMPLOGUIA4.Endpoints
 
             app.MapPost("/account/login", (string login, string password, IJwtAuthenticationService authService) =>
             {
-                if (login == "admin" && password == "1235")
+                if (login == "admin" && password == "12345")
                 {
                     var token = authService.Authenticate(login);
 
